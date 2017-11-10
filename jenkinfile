@@ -1,0 +1,28 @@
+pipeline
+{
+
+    agent any
+        tools {
+        maven 'M3'
+    }
+    stages {
+      stage('Build')
+      {
+          steps {
+         sh 'mvn clean package -f pom.xml'
+      }
+          }
+   stage('Publish')
+      {
+          steps {
+            nexusPublisher nexusInstanceId: 'nexus-host', nexusRepositoryId: 'releases', packages: [[$class: 'jar', mavenAssetList: [[classifier: '', extension: '', filePath: 'war/target/jenkins.war']], mavenCoordinate: [artifactId: 'jenkins-war', groupId: 'org.jenkins-ci.main', packaging: 'war', version: '2.23']]]
+          }
+      }
+/*   stage('Provision/Devploy application'){
+      steps {
+             sh 'chmod 755 provision-app.sh'
+			 sh './provision-app.sh ${BUILD_NUMBER}'
+          }
+          }  */
+    }
+   }
