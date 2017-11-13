@@ -1,4 +1,4 @@
 #!/bin/bash
 
-echo "target/junit-example-1.0-SNAPSHOT.jar" > filepath.txt
+ls -t1 target/junit-example-*-SNAPSHOT.jar| head -1 > filepath.txt
 echo 2.23 > version.txt
