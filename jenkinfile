@@ -16,7 +16,7 @@ pipeline
    {
      steps {
        // appends current build path and version in files jarpath.txt and version.txt respectively.
-       sh "./get_build_path.sh"
+       sh "sh get_build_path.sh"
      }
    }
    stage('Publish')
