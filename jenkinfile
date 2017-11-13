@@ -15,8 +15,8 @@ pipeline
    stage('Get build path')
    {
      steps {
-       sh "ls -t1 target/junit-example-*-SNAPSHOT.jar| head -1 > jarpath.txt"
-       sh "echo 2.23 > version.txt"
+       // appends current build path and version in files jarpath.txt and version.txt respectively.
+       sh "./get_build_path.sh"
      }
    }
    stage('Publish')
