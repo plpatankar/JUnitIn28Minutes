@@ -26,7 +26,6 @@ pipeline
                     JARPATH = readFile 'jarpath.txt',
 		    VERSION = readFile 'version.txt'
                 }
-	    JARPATH=target/junit-example-1.0-SNAPSHOT.jar
             nexusPublisher nexusInstanceId: 'nexus-host', nexusRepositoryId: 'releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: "$JARPATH"]], mavenCoordinate: [artifactId: 'jenkins-war', groupId: 'org.jenkins-ci.main', packaging: 'jar', version: "$VERSION"]]]
           }
       }
