@@ -15,7 +15,7 @@ pipeline
    stage('Get build path')
    {
      steps {
-       // appends current build path and version in files jarpath.txt and version.txt respectively.
+       // appends current build path and version in files filepath.txt and version.txt respectively.
        sh "sh get_build_path.sh"
      }
    }
@@ -23,7 +23,7 @@ pipeline
       {
           steps {
 	   script {
-                    JARPATH = readFile 'jarpath.txt',
+                    JARPATH = readFile 'filepath.txt'
 		    VERSION = readFile 'version.txt'
                 }
             nexusPublisher nexusInstanceId: 'nexus-host', nexusRepositoryId: 'releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: "$JARPATH"]], mavenCoordinate: [artifactId: 'jenkins-war', groupId: 'org.jenkins-ci.main', packaging: 'jar', version: "$VERSION"]]]
