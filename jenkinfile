@@ -12,10 +12,22 @@ pipeline
          sh 'mvn clean package -f pom.xml'
       }
           }
+   stage('Get build path')
+   {
+     steps {
+       sh 'ls -t1 target/junit-example-*-SNAPSHOT.jar| head -1 > jarpath.txt'
+       sh 'echo 2.23 > version.txt'
+     }
+   }
    stage('Publish')
       {
           steps {
-            nexusPublisher nexusInstanceId: 'nexus-host', nexusRepositoryId: 'releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/junit-example-1.0-SNAPSHOT.jar']], mavenCoordinate: [artifactId: 'jenkins-war', groupId: 'org.jenkins-ci.main', packaging: 'jar', version: '2.23']]]
+	   script {
+                    JARPATH = readFile 'jarpath.txt',
+		    VERSION = readFile 'version.txt'
+                }
+	    JARPATH=target/junit-example-1.0-SNAPSHOT.jar
+            nexusPublisher nexusInstanceId: 'nexus-host', nexusRepositoryId: 'releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: "$JARPATH"]], mavenCoordinate: [artifactId: 'jenkins-war', groupId: 'org.jenkins-ci.main', packaging: 'jar', version: "$VERSION"]]]
           }
       }
 /*   stage('Provision/Devploy application'){
