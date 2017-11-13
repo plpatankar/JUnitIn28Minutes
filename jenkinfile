@@ -25,7 +25,7 @@ pipeline
 	   script {
                     JARPATH = readFile 'filepath.txt'
 		    VERSION = readFile 'version.txt'
-                }
+                }.trim()
             nexusPublisher nexusInstanceId: 'nexus-host', nexusRepositoryId: 'releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: "$JARPATH"]], mavenCoordinate: [artifactId: 'jenkins-war', groupId: 'org.jenkins-ci.main', packaging: 'jar', version: "$VERSION"]]]
           }
       }
