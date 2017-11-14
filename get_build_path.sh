@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #git config remote.origin.url "https://plpatankar:Casper9i@github.com/plpatankar/JUnitIn28Minutes.git"
-git config remote.origin.url "https://042d64db17e8de8863970b0ed0ba025523232683@github.com/plpatankar/JUnitIn28Minutes.git"
+git config remote.origin.url "https://OAuth:042d64db17e8de8863970b0ed0ba025523232683@github.com/plpatankar/JUnitIn28Minutes.git"
 
 git status
 git checkout master
