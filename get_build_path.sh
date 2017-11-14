@@ -9,4 +9,4 @@ git config --global user.name "Prashant Patankar"
 git config --global user.email plpatankar@gmail.com
 git add version.txt
 git commit -m "Added new version in file"
-git push origin master
+git push
