@@ -1,5 +1,7 @@
 #!/bin/bash
 
+git remote add origin https://{plpatnakar}:{Casper9i}@github.com/plpatankar/JUnitIn28Minutes.git
+
 git status
 git checkout master
 ls -t1 target/junit-example-*-SNAPSHOT.jar| head -1 > filepath.txt
